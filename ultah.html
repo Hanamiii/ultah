@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun Sayang! ❤️</title>
+    <style>
+        /* ... [style sebelumnya tetap sama] ... */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            font-family: 'Arial', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            white-space: nowrap;
+            /*animation: bounce 2s infinite;*/
+        }
+
+        /* Media query untuk layar mobile */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 380px) {
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        .message {
+            font-size: 1.2em;
+            margin: 20px;
+            max-width: 600px;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            user-select: none;
+            animation: float 3s infinite;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #ff6b6b;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .start-btn {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 40px;
+            font-size: 1.5em;
+            background: white;
+            border: none;
+            border-radius: 50px;
+            color: #ff6b6b;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .start-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        .balloon {
+            position: fixed;
+            animation: balloonFloat 15s linear infinite;
+            opacity: 0.6;
+            font-size: 30px;
+        }
+
+        @keyframes balloonFloat {
+            0% {
+                transform: translateY(100vh) scale(0.8);
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2);
+            }
+        }
+
+        .show-message {
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content {
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .content.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgMusic" loop>
+        <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button class="music-btn" onclick="toggleMusic()" id="musicBtn">🔇</button>
+    <button class="start-btn" id="startBtn">Klik untuk Mulai! 🎉</button>
+
+    <div class="content" id="mainContent">
+        <div class="container">
+            <h1>✨ Selamat Ulang Tahun! ✨</h1>
+            <div id="message" class="message">
+                Di hari istimewa ini, Aku ingin kamu tahu bahwa kamu adalah hadiah terindah dalam hidupku. Kamu adalah sosok yang begitu berarti dalam hidupku, seseorang yang selalu memberikan kehangatan, semangat, dan cinta di setiap hariku. <br>
+                Aku berharap semua impianmu segera terwujud, dan perjalanan hidupmu selalu dipenuhi kebahagiaan, cinta, dan keberkahan. Hari ini adalah tentangmu, jadi nikmati setiap detiknya dengan penuh sukacita.<br>
+                Terima kasih karena selalu ada untukku dan menjadi bagian tak tergantikan dari hidupku. Aku bersyukur bisa menyaksikanmu tumbuh dan terus menjadi versi terbaik dari dirimu.<br>
+                Aku sayang kamu, dan aku akan selalu ada untukmu, hari ini, esok, dan seterusnya. Selamat ulang tahun, cinta! ❤️
+            </div>
+            <button class="btn" onclick="showLove()">Klik Aku! 💝</button>
+        </div>
+    </div>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const startBtn = document.getElementById('startBtn');
+        const mainContent = document.getElementById('mainContent');
+        let isMusicPlaying = false;
+
+        // Fungsi untuk memulai semua
+        function startEverything() {
+            music.play();
+            isMusicPlaying = true;
+            startBtn.classList.add('hidden');
+            mainContent.classList.add('visible');
+            createBalloon(); // Mulai membuat balon
+            setInterval(createBalloon, 2000); // Lanjutkan membuat balon setiap 2 detik
+        }
+
+        // Event listener untuk tombol mulai
+        startBtn.addEventListener('click', startEverything);
+
+        // Fungsi untuk memainkan/menghentikan musik
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                music.pause();
+                musicBtn.textContent = '🎵';
+            } else {
+                music.play();
+                musicBtn.textContent = '🔇';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        // Tampilkan pesan dengan animasi
+        document.getElementById('message').classList.add('show-message');
+
+        // Fungsi untuk membuat balon random
+        function createBalloon() {
+            const balloons = ['🎈', '🎁', '🎉', '🎊', '💝', '💖'];
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.textContent = balloons[Math.floor(Math.random() * balloons.length)];
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            document.body.appendChild(balloon);
+            
+            // Hapus balon setelah animasi selesai
+            setTimeout(() => balloon.remove(), 15000);
+        }
+
+        // Fungsi untuk menambahkan hati ketika tombol diklik
+        function showLove() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
+            document.body.appendChild(heart);
+            
+            // Hapus hati setelah animasi
+            setTimeout(() => heart.remove(), 3000);
+
+            // Tambahkan beberapa hati sekaligus
+            for(let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const extraHeart = document.createElement('div');
+                    extraHeart.className = 'heart';
+                    extraHeart.textContent = '❤️';
+                    extraHeart.style.left = Math.random() * 100 + 'vw';
+                    extraHeart.style.top = Math.random() * 100 + 'vh';
+                    document.body.appendChild(extraHeart);
+                    setTimeout(() => extraHeart.remove(), 3000);
+                }, i * 200);
+            }
+        }
+
+        // Coba memulai musik secara otomatis
+        window.addEventListener('load', function() {
+            // Mencoba memulai musik
+            const playPromise = music.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Autoplay berhasil
+                    isMusicPlaying = true;
+                    musicBtn.textContent = '🔇';
+                    startBtn.classList.add('hidden');
+                    mainContent.classList.add('visible');
+                    createBalloon();
+                    setInterval(createBalloon, 2000);
+                })
+                .catch(error => {
+                    // Autoplay gagal - tampilkan tombol mulai
+                    startBtn.classList.remove('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
